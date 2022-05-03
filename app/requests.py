@@ -42,3 +42,41 @@ def process_results(source_list):
         source_results.append(source_object)
 
     return source_results
+
+def get_source(id):
+    get_source_details_url = base_url.format(id,apiKey)
+    with urllib.request.urlopen(get_source_details_url) as url:
+        source_details_data = url.read()
+        source_details_response = json.loads(source_details_data)
+        source_object = None
+        if source_details_response:
+            id = source_details_response.get('id')
+            name = source_details_response.get('name')
+            description = source_details_response.get('description')
+            url= source_details_response.get('url')
+            category = source_details_response.get('category')
+            source_object = Source(id,name,description,url,category)
+
+    return source_object
+
+def get_article(id):
+    '''
+    A function that returns a list of articles
+    '''
+    get_articles_details_url = article_url.format(id,apiKey)
+    with urllib.request.urlopen(get_articles_details_url) as url:
+        articles_details_data = url.read()
+        articles_details_response = json.loads(articles_details_data)
+        articles_object = None
+        if articles_details_response:
+            author = articles_details_response('author')
+            title = articles_details_response('title')
+            description = articles_details_response.get('description')
+            url= articles_details_response.get('url')
+            urlToImage = articles_details_response.get('urlToImage')
+            publishedAt = articles_details_response.get('publishedAt')
+            content = articles_details_response.get('content')
+        
+            articles_object = Articles(title,author,description,url,urlToImage,publishedAt,content)
+
+    return articles_object
