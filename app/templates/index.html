@@ -1,0 +1,29 @@
+{% extends 'base.html'%} {%import 'macros.html' as macro%}
+
+{%block styles%} {{ super() }}
+<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}"> { %endblock%} 
+
+<!-- Content block -->
+{% block content %}
+<!--Business news section  -->
+<div class="container-fluid">
+    <h1>Welcome to News Desk</h1>
+    <div class="row">
+        <h2>Sources per category:</h2>
+        <h3> General News</h3>
+        {{ macro.displaySourceList(general)}}
+    </div>
+    <div class="row">
+        <h3> Business News</h3>
+        {{ macro.displaySourceList(business)}}
+    </div>
+    <div class="row">
+        <h3> Technology News</h3>
+        {{ macro.displaySourceList(technology)}}
+    </div>
+    <div class="row">
+        <h3> Health News</h3>
+        {{ macro.displaySourceList(health)}}
+    </div>
+</div>
+{% endblock %}
