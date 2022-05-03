@@ -80,3 +80,35 @@ def get_article(id):
             articles_object = Articles(title,author,description,url,urlToImage,publishedAt,content)
 
     return articles_object
+
+def get_articles(source):
+    '''
+    Function that gets the json response to our url request
+    '''
+    get_articles_url = article_url.format(source,apiKey)
+    with urllib.request.urlopen(get_articles_url) as url:
+        get_articles_data = url.read()
+        get_articles_response = json.loads(get_articles_data)
+        articles_results = []
+        if get_articles_response['articles']:
+            articles_results_list = get_articles_response['articles']
+            articles_results = process_articles_results(articles_results_list)
+    return articles_results
+
+def process_articles_results(articles_list):
+    
+    articles_results = []
+    for articles_item in articles_list:
+        author = articles_item.get('author')
+        title = articles_item.get('title')
+        description = articles_item.get('description')
+        url= articles_item.get('url')
+        urlToImage = articles_item.get('urlToImage')
+        publishedAt = articles_item.get('publishedAt')
+        content = articles_item.get('content')
+        
+   
+        articles_object = Articles(author,title,description,url,urlToImage,publishedAt,content)
+        articles_results.append(articles_object)
+
+    return articles_results
