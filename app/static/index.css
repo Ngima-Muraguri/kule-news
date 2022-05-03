@@ -1,0 +1,18 @@
+.container-fluid {
+    color: white;
+    background-color: black;
+}
+
+h3,
+h2 {
+    color: orange;
+}
+
+a {
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    color: orange;
+}
