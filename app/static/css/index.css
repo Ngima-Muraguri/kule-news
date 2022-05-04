@@ -2,7 +2,10 @@
     color: white;
     background-color: black;
 }
-
+.story{
+    display: flex;
+    margin: 20px;
+}
 
 h3,
 h2 {
