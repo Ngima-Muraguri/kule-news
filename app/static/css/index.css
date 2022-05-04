@@ -3,6 +3,7 @@
     background-color: black;
 }
 
+
 h3,
 h2 {
     color: orange;
@@ -10,6 +11,8 @@ h2 {
 
 a {
     color: white;
+    display: flexbox;
+    
 }
 
 h1 {
